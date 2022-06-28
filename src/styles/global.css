@@ -55,7 +55,8 @@ p{
     height: 50px;
     border-radius: 50%;
     border: solid 2px #858585;
-    background-color: #cdcdcd;
+    background-image: url(./91087331-icono-de-perfil-de-avatar-predeterminado-para-hombre-marcador-de-posición-de-foto-gris-vector-de-ilu.webp);
+    background-size: cover;
     margin-bottom: 10px;
 }
 .phone-number{
