@@ -13,7 +13,7 @@ const App = () => {
     fetch("https://jsonplaceholder.typicode.com/users/")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setUsers(data);
         localStorage.setItem("data", JSON.stringify(data));
       });
@@ -24,11 +24,10 @@ const App = () => {
     // });
   }, []);
 
-  if (localStorage.getItem("data")) {
-    let usersLocalstorage = JSON.parse(localStorage.getItem("data"));
-    console.log(usersLocalstorage);
-  }
-  let newSortedList = [...users].sort((a, b) => (a.name > b.name ? 1 : a.name < b.name ? -1 : 0))
+
+  let newSortedList = [...users].sort((a, b) =>
+    a.name > b.name ? 1 : a.name < b.name ? -1 : 0
+  );
 
   return (
     <div className="App">
@@ -36,16 +35,16 @@ const App = () => {
       <div className="wrapper-list">
         <div className="list">
           {newSortedList
-          .sort((a, b) => a - b)
-          .map((user) => (
-            <Card
-              key={user.id}
-              name={user.name}
-              phonenumber={user.phone}
-              email={user.email}
-              website={user.website}
-            />
-          ))}
+            .sort((a, b) => a - b)
+            .map((user) => (
+              <Card
+                key={user.id}
+                name={user.name}
+                phonenumber={user.phone}
+                email={user.email}
+                website={user.website}
+              />
+            ))}
         </div>
       </div>
     </div>
