@@ -15,8 +15,7 @@ const App = () => {
       .then((data) => {
         console.log(data);
         setUsers(data);
-          localStorage.setItem("data", JSON.stringify(data));
-
+        localStorage.setItem("data", JSON.stringify(data));
       });
 
     // usersApi.get("https://jsonplaceholder.typicode.com/users/").then((res) => {
@@ -25,19 +24,20 @@ const App = () => {
     // });
   }, []);
 
-
-
   if (localStorage.getItem("data")) {
     let usersLocalstorage = JSON.parse(localStorage.getItem("data"));
     console.log(usersLocalstorage);
   }
+  let newSortedList = [...users].sort((a, b) => (a.name > b.name ? 1 : a.name < b.name ? -1 : 0))
 
   return (
     <div className="App">
       <Header />
       <div className="wrapper-list">
         <div className="list">
-          {users.map((user) => (
+          {newSortedList
+          .sort((a, b) => a - b)
+          .map((user) => (
             <Card
               key={user.id}
               name={user.name}
