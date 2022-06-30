@@ -2,13 +2,9 @@ import React from "react";
 import { usersApi } from "./../api/usersApi";
 
 const Card = (props) => {
-  // function deleteUser(id) {
-  //   usersApi.delete(`https://jsonplaceholder.typicode.com/users/${id}`)
-  //     .then(res => {
-  //       console.log(res);
-  //       console.log(res.data);
-  //     })
-  // }
+  function deleteUser(position) {
+
+  }
 
   return (
     <>
@@ -20,15 +16,13 @@ const Card = (props) => {
           <p className="email">
             Email: <a href="">{props.email}</a>
           </p>
+
           <p className="website">
             WebSite: <a href="">{props.website}</a>
           </p>
         </div>
 
-        <div
-          className="delete-card"
-          // onClick={deleteUser(props.id)}
-        >
+        <div className="delete-card" onClick={deleteUser(props.position)}>
           <svg
             className="icon-exit"
             id="Flat"

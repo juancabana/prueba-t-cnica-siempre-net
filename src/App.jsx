@@ -10,37 +10,51 @@ const App = () => {
   const [users, setUsers] = useState([]);
 
   // useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/users/")
-      .then((res) => res.json())
-      .then((data) => {
-        // console.log(data);
-        // setUsers(data);
-        localStorage.setItem('data', JSON.stringify(data));
-      });
-        let listUsers = JSON.parse(localStorage.getItem('data'));
-        console.log(listUsers)
-      // debugger
+  fetch("https://jsonplaceholder.typicode.com/users/")
+    .then((res) => res.json())
+    .then((data) => {
+      // console.log(data);
+      // setUsers(data);
 
-    // usersApi.get("https://jsonplaceholder.typicode.com/users/").then((res) => {
-    //   console.log(res.data);
-    //   setUsers(res.data);
-    // });
+      // Aquí GUARDO la data sin ordenar en el localstorage
+      // localStorage.setItem("data", JSON.parse(data));
+      // data = JSON.stringify(data);
+      
+      // Aquí ordeno la data por orden de nombres
+      let SortedList = data.sort((a, b) =>
+      a.name > b.name ? 1 : a.name < b.name ? -1 : 0
+      );
+      // console.log(SortedList);
+
+
+      // Aquí envío la data ordenada al localStorage
+      localStorage.setItem("ordenedData", JSON.stringify(SortedList));
+    });
+  // Aquí obtengo la data del localStorage
+  let listUsers = JSON.parse(localStorage.getItem("ordenedData"));
+
+
+  // console.log(listUsers)
+  // debugger
+
+  // usersApi.get("https://jsonplaceholder.typicode.com/users/").then((res) => {
+  //   console.log(res.data);
+  //   setUsers(res.data);
+  // });
   // }, []);
-  
 
-  let newSortedList = listUsers.sort((a, b) =>
-    a.name > b.name ? 1 : a.name < b.name ? -1 : 0
-  );
+  // let dataordenedLocalStorage = JSON.parse(localStorage.getItem("ordenedData"));
 
   return (
     <div className="App">
       <Header />
       <div className="wrapper-list">
         <div className="list">
-          {newSortedList
+          {listUsers
             .sort((a, b) => a - b)
-            .map((user) => (
+            .map((user, index) => (
               <Card
+                position={index}
                 key={user.id}
                 name={user.name}
                 phonenumber={user.phone}
