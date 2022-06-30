@@ -23,8 +23,11 @@ header{
     width: 100%;
     height: auto;
     padding-top: 10px;
-    display: grid;
-    grid-template-columns: auto auto auto auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    /* display: grid; */
+    /* grid-template-columns: auto auto auto auto; */
     gap: 5px;
 }
 
