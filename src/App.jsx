@@ -9,23 +9,26 @@ import { usersApi } from "./api/usersApi";
 const App = () => {
   const [users, setUsers] = useState([]);
 
-  useEffect(() => {
+  // useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users/")
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);
-        setUsers(data);
-        localStorage.setItem("data", JSON.stringify(data));
+        // setUsers(data);
+        localStorage.setItem('data', JSON.stringify(data));
       });
+        let listUsers = JSON.parse(localStorage.getItem('data'));
+        console.log(listUsers)
+      // debugger
 
     // usersApi.get("https://jsonplaceholder.typicode.com/users/").then((res) => {
     //   console.log(res.data);
     //   setUsers(res.data);
     // });
-  }, []);
+  // }, []);
+  
 
-
-  let newSortedList = [...users].sort((a, b) =>
+  let newSortedList = listUsers.sort((a, b) =>
     a.name > b.name ? 1 : a.name < b.name ? -1 : 0
   );
 
