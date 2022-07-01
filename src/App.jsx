@@ -24,7 +24,7 @@ const App = () => {
       let SortedList = data.sort((a, b) =>
       a.name > b.name ? 1 : a.name < b.name ? -1 : 0
       );
-      // console.log(SortedList);
+      console.log(SortedList);
 
 
       // Aquí envío la data ordenada al localStorage
